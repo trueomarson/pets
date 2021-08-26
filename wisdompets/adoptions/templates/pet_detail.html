@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block ckontent %}
 <div>
     <h3>{{ pet.name|capfirst }}</h3>
     <p>{{ pet.species }}</p>
@@ -5,6 +7,21 @@
     <p>Breed: {{ pet.breed }}</p>
     {% endif % }
     {% if pet.age %}
-    <p></p>
-
+    <p>Age: {{ pet.age }}</p>
+    {% endif %}
+    {% if pet.sex %}
+    <p>Sex: {{ pet.sex }}</p>
+    {% endif %}
+    {% if pet.vaccinations.all %}
+    <p>vaccinations for:</p>
+    <ul>
+        {% for vaccination in pet.vaccinations.all %}
+        <li>{{ vaccination.name }}</li>
+        {% endif %}
+    </ul>
+    {% endif %}
+    <p>Subbmitted by: {{ pet.submitter }}</p>
+    <p>Subbmitted on: {{ pet.submittion_date|date:"D M Y" }}</p>
+    <p>{{ pet.description }} </p>
 </div>
+{% endblock %}
